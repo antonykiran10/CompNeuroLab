@@ -4,9 +4,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 import math
+import time as clock
 
 os.chdir('/home/antony/mycodes/anup_astron')
-
+start_time = clock.time()
 
 def model(z, t):
     # PMCA flux
@@ -133,6 +134,8 @@ mydata = pd.DataFrame({
     'Cal_ER': result[:, 9],
     'Glu': result[:, 10]
 })
+
+print("--- %s seconds ---" % (clock.time() - start_time))
 
 mydata.to_csv('anup.csv')
 plt.plot(time_points, result[:, 8], label='Ca_cyto')
