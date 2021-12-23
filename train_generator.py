@@ -1,9 +1,23 @@
 import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
 
-a = []
+time_line = np.linspace(0, 300, 300)
+wave = signal.square(2 * np.pi * 30 * time_line)
+plt.plot(wave)
+plt.show()
 
-for i in range(0,100):
-    if i%2 == 0:
-        a.append(1)
+
+def input_train(t):
+    if 100 < t < 150 and wave[t] > 0:
+        return wave[t]
     else:
-        a.append(0)
+        return 0
+
+
+a = np.zeros(300)
+for i in range(0, 300):
+    a[i] = input_train(i)
+
+plt.plot(a)
+plt.show()
