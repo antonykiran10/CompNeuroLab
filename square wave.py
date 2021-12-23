@@ -8,6 +8,6 @@ import numpy as np
 
 t = np.linspace(0, 200, 200)
 
-plot.plot(t, signal.square(2 * np.pi *5* t))
+plot.plot(t, signal.square(2 * np.pi *10* t))
 plot.grid()
 plot.show()

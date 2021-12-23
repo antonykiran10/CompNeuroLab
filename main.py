@@ -69,7 +69,7 @@ def model(z, t):
     d2 = b2 / a2
     d3 = b3 / a3
     d5 = b5 / a5
-    f_noise = 0.5 / 100  # scaling factor for noise
+    f_noise = 0.2 / 100  # scaling factor for noise
     IP3_conc = z[10]
     q2 = d2 * ((IP3_conc + d1) / (IP3_conc + d3))
     n = IP3_conc / (IP3_conc + d1)
@@ -101,10 +101,10 @@ def model(z, t):
     # mGluR flux
     kGlu = 160
     Glu_conc = z[11]
-    if 100 < t < 130:
-        Glu_conc = 200
-    else:
-        dGludt = (-Glu_conc * kGlu)
+    if 100 < t < 160:
+        Glu_conc = 100
+    # else:
+    #     dGludt = (-Glu_conc * kGlu)
     dGludt = (-Glu_conc * kGlu)
     V_max_mGluR = 0.65
     ka_glu = 11
