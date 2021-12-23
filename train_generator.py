@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 
-time_line = np.linspace(0, 300, 300)
-wave = signal.square(2 * np.pi * 30 * time_line)
+time_line = np.linspace(0, 200, 200)
+wave = signal.square(2 * np.pi * 20 * time_line)
 plt.plot(wave)
 plt.show()
 

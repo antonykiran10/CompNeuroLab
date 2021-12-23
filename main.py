@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.integrate import odeint
+from scipy import signal
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
@@ -9,7 +10,11 @@ import time as clock
 os.chdir('/home/antony/mycodes/anup_astron')
 start_time = clock.time()
 
+time_line = np.linspace(0, 200, 200)
+wave = signal.square(2 * np.pi * 20 * time_line)
+
 def model(z, t):
+    # print(t)
     # PMCA flux
     Ca_cyt = z[8]
     m0 = z[0]
@@ -101,7 +106,7 @@ def model(z, t):
     # mGluR flux
     kGlu = 160
     Glu_conc = z[11]
-    if 100 < t < 160:
+    if 100 < t < 160 and wave[int(t)] > 0:
         Glu_conc = 100
     # else:
     #     dGludt = (-Glu_conc * kGlu)
