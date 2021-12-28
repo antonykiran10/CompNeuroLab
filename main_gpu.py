@@ -107,6 +107,7 @@ def model(z, t):
     kGlu = 160
     Glu_conc = z[11]
     if 100 < t < 160 and wave[int(t)] > 0:
+        print('true')
         Glu_conc = 100
     # else:
     #     dGludt = (-Glu_conc * kGlu)
@@ -137,7 +138,7 @@ mydata = pd.DataFrame({
     'time': time_points,
     'Cal_cyto': result[:, 8],
     'Cal_ER': result[:, 9],
-    'Glu': result[:, 10]
+    'Glu': result[:, 11]
 })
 
 print("--- %s seconds ---" % (clock.time() - start_time))
@@ -152,7 +153,7 @@ plt.plot(time_points, result[:, 9], label="Ca_ER")
 plt.grid()
 plt.legend()
 plt.show()
-plt.plot(time_points, result[:, 10], label="Glu")
+plt.plot(time_points, result[:, 11], label="Glu")
 plt.grid()
 plt.legend()
 plt.show()

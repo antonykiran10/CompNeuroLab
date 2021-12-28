@@ -15,6 +15,10 @@ wave = signal.square(2 * np.pi * 20 * time_line)
 plt.plot(wave)
 plt.show()
 
+def stim(t):
+    if 100 < t < 160:  # and wave[int(t)] > 0:
+        return 100
+
 def model(z, t):
     # print(t)
     # PMCA flux
@@ -107,12 +111,17 @@ def model(z, t):
 
     # mGluR flux
     kGlu = 160
+
     Glu_conc = z[11]
+    if 100 < t < 160:  # and wave[int(t)] > 0:
+        Glu_conc = stim(t)
     dGludt = (-Glu_conc * kGlu)
-    if 100 < t < 160 and wave[int(t)] > 0:
-        Glu_conc = 100
+        # Glu_conc = z[11]
+
+    #else:
+
         # print(Glu_conc)
-    print(Glu_conc)
+    print(dGludt)
     V_max_mGluR = 0.65
     ka_glu = 11
     J_mGluR = V_max_mGluR * ((Glu_conc ** 2) / ((Glu_conc ** 2) + (ka_glu ** 2)))
@@ -134,8 +143,8 @@ initial_vals = [0, 0, 0, 0, 0, 0, 0, 0, 0.08, 400, 0.16, 0]  # [mo, m1, m2, c0, 
 time_points = np.linspace(0, 200, int(200 / 0.00005))
 
 result = odeint(model, initial_vals, time_points)
-plt.plot(result[:, 11])
-plt.show()
+# plt.scatter(time_points,result[:, 11])
+# plt.show()
 
 mydata = pd.DataFrame({
     'time': time_points,
@@ -153,6 +162,10 @@ plt.grid()
 plt.legend()
 plt.show()
 plt.plot(time_points, result[:, 9], label="Ca_ER")
+plt.grid()
+plt.legend()
+plt.show()
+plt.plot(time_points, result[:, 10], label="IP3")
 plt.grid()
 plt.legend()
 plt.show()

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def model(z, t):
     Glu = z
-    k_Glu = 10
+    k_Glu = 160
     dGludt = (-Glu * k_Glu)
     return dGludt
 
