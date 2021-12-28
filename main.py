@@ -17,7 +17,7 @@ plt.show()
 
 def stim(t):
     if 100 < t < 160:  # and wave[int(t)] > 0:
-        return 100
+        return 200
 
 def model(z, t):
     # print(t)

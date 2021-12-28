@@ -17,6 +17,8 @@ def recyle(z, t):
     r07 = 0.000417
     rCa7 = 8
     kef = 0.66
+    if 100<t<102:
+        released = 20
     kaf = 0.6
     kes = 0.16
     kas = 0.052
@@ -46,8 +48,13 @@ initial_vals = [docked_vesicles, mobile_vesicles, released_vesicles, endocytosed
 time_points = np.linspace(0, 200, int(200 / 0.00005))
 
 result = odeint(recyle, initial_vals, time_points)
-plt.plot(time_points, result)
+plt.plot(time_points, result[:,0], label='docked')
+plt.plot(time_points, result[:,1], label='mobile')
+plt.plot(time_points, result[:,2], label='released')
+plt.plot(time_points, result[:,3], label='endocytosed')
+plt.plot(time_points, result[:,4], label='reacidified')
 print(result[:,0])
+plt.legend()
 plt.show()
 # print(result)
 

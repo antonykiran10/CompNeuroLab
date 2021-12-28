@@ -8,35 +8,37 @@ s4_2_count = 0
 kf4 = 153
 kb4 = 3500
 b4 = 0.25
-Ca_cyt = 0.1
+Ca_cyt = 100 * 10 ** (-6)
 dt = 0.00005
-pf4 = kf4 * dt * Ca_cyt
-pb4 = kb4 * dt
+ava_number = 6.022 * 10 ** 23
+# pf4 = kf4 * dt * Ca_cyt
+# pb4 = kb4 * dt
 
 release_probability = np.zeros(10000)
 
-dt = 0.00005
 my_array = np.linspace(0, 1, 100000)
 
-print(pf4, pb4)
+# print(pf4, pb4)
 # print(3 * pf4 + 3 * pb4)
 
 for j in range(0, 10000):
+    # pf4 = kf4 * dt * np.count_nonzero(syt4 == 0)
+    # pb4 = kb4 * dt
 
     for i in range(0, len(syt4)):
-        if syt4[i] == 0 and np.random.binomial(1, 2 * pf4):
+        if syt4[i] == 0 and np.random.binomial(1, kf4 * dt * np.count_nonzero(syt4 == 0) * Ca_cyt):
             s4_0_count -= 1
             s4_1_count += 1
             syt4[i] = 1
-        if syt4[i] == 1 and np.random.binomial(1, pf4):
+        if syt4[i] == 1 and np.random.binomial(1, kf4 * dt * np.count_nonzero(syt4 == 1) * Ca_cyt):
             s4_1_count -= 1
             s4_2_count += 1
             syt4[i] = 2
-        if syt4[i] == 2 and np.random.binomial(1, 2 * pb4):
+        if syt4[i] == 2 and np.random.binomial(1, kb4 * dt * np.count_nonzero(syt4 == 2)):
             s4_2_count -= 1
             s4_1_count += 1
             syt4[i] = 1
-        if syt4[i] == 1 and np.random.binomial(1, pb4):
+        if syt4[i] == 1 and np.random.binomial(1, kb4 * dt * np.count_nonzero(syt4 == 1)):
             s4_1_count -= 1
             s4_0_count += 1
             syt4[i] = 0

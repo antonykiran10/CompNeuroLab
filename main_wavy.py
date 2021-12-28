@@ -17,7 +17,7 @@ plt.show()
 
 def stim(t):
     if 100 < t < 160:  # and wave[int(t)] > 0:
-        return 100
+        return 200
 
 def model(z, t):
     # print(t)
@@ -113,7 +113,7 @@ def model(z, t):
     kGlu = 160
 
     Glu_conc = z[11]
-    if 100 < t < 160:  # and wave[int(t)] > 0:
+    if 100 < t < 160 and wave[int(t)] > 0:
         Glu_conc = stim(t)
     dGludt = (-Glu_conc * kGlu)
         # Glu_conc = z[11]
