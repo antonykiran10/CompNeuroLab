@@ -1,1 +1,1 @@
-# codes for simulating the li-rinzel model: both deterministic and stochastic
+# Codes for simulating the li-rinzel model: both deterministic and stochastic
